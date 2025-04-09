@@ -1,27 +1,32 @@
 #include <iostream>
+#include <unordered_map>
 using namespace std;
 
+char firstNonRepeatingChar(const string& str) {
+    unordered_map<char, int> freq;
 
-void swap(int& a, int& b) {
-    int temp = a;
-    a = b;
-    b = temp;
+    
+    for (char ch : str) {
+        freq[ch]++;
+    }
+
+    
+    for (char ch : str) {
+        if (freq[ch] == 1)
+            return ch;
+    }
+
+    return -1;
 }
 
 int main() {
-    int x, y;
+    string input = "swiss";
+    char result = firstNonRepeatingChar(input);
 
-    cout << "Enter the first number: ";
-    cin >> x;
-
-    cout << "Enter the second number: ";
-    cin >> y;
-
-    cout << "\nBefore swap: x = " << x << ", y = " << y << endl;
-
-    swap(x, y);
-
-    cout << "After swap: x = " << x << ", y = " << y << endl;
+    if (result != -1)
+        cout << "First non-repeating character: '" << result << "'" << endl;
+    else
+        cout << "All characters repeat. Output: -1" << endl;
 
     return 0;
 }
